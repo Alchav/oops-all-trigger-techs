@@ -1,0 +1,12 @@
+{
+    "name": "oops-all-trigger-techs",
+    "version": "0.0.1",
+    "title": "Oops! All Trigger Techs",
+    "author": "Alchav",
+    "description": "",
+    "factorio_version": "2.0",
+    "dependencies": [
+        "base >= 2.0.71",
+        "quality >= 2.0.71"
+    ]
+}
