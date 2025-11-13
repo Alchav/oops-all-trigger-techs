@@ -3,10 +3,11 @@
     "version": "0.0.1",
     "title": "Oops! All Trigger Techs",
     "author": "Alchav",
-    "description": "Whoops! We lost all of the science pack recipes. Everything will have to be unlocked by crafting instead.",
+    "description": "Whoops! We lost all of the science pack recipes. Everything will have to be unlocked by crafting instead. Currently incompatible with Space Age and will not play nicely with other mods that add technologies.",
     "factorio_version": "2.0",
     "dependencies": [
         "base >= 2.0.71",
-        "quality >= 2.0.71"
+        "quality >= 2.0.71",
+        "! space-age"
     ]
 }

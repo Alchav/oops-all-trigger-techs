@@ -501,7 +501,6 @@ data.raw.technology["laser-weapons-damage-6"].research_trigger = {type = "craft-
 for _, tech in pairs(data.raw.technology) do
     if tech.research_trigger then
         tech.unit = nil
-    end
     if not (string.find(tech.name, "research-speed", 1, true) or string.find(tech.name, "mining-productivity", 1, true)) then
         tech.upgrade = false
     end
