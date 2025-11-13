@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "title": "Oops! All Trigger Techs",
     "author": "Alchav",
-    "description": "",
+    "description": "Whoops! We lost all of the science pack recipes. Everything will have to be unlocked by crafting instead.",
     "factorio_version": "2.0",
     "dependencies": [
         "base >= 2.0.71",

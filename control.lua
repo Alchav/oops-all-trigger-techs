@@ -1,5 +1,3 @@
--- Replace the progress system with direct reads from force statistics
-
 local Spec = require("common.trigger_spec")
 
 -- Iterate surface NAMES safely (works during on_init)
@@ -44,7 +42,6 @@ local function total_fluid_output(force, fluid_name)
 end
 
 
--- read lifetime totals
 local function current_count(force, c)
   if c.type == "craft-item"  and c.item  then return total_item_output(force, c.item) end
   if c.type == "craft-fluid" and c.fluid then return total_fluid_output(force, c.fluid) end
@@ -78,23 +75,28 @@ local function check_all_for_force(force)
   end
 end
 
-script.on_init(function()
-  -- Immediate catch-up on existing saves: if counts already satisfy a tech, unlock it now
+-- script.on_init(function()
+--   -- Immediate catch-up on existing saves: if counts already satisfy a tech, unlock it now
+--   for _, f in pairs(game.forces) do
+--     check_all_for_force(f)
+--   end
+-- end)
+--
+-- script.on_configuration_changed(function(_)
+--   for _, f in pairs(game.forces) do
+--     check_all_for_force(f)
+--   end
+-- end)
+
+-- -- Optional: still listen to events just to re-check sooner than your next tick
+-- script.on_event(defines.events.on_player_crafted_item, function(e)
+--   local force = game.get_player(e.player_index).force
+--   check_all_for_force(force)
+-- end)
+script.on_nth_tick(30, function()
   for _, f in pairs(game.forces) do
     check_all_for_force(f)
   end
-end)
-
-script.on_configuration_changed(function(_)
-  for _, f in pairs(game.forces) do
-    check_all_for_force(f)
-  end
-end)
-
--- Optional: still listen to events just to re-check sooner than your next tick
-script.on_event(defines.events.on_player_crafted_item, function(e)
-  local force = game.get_player(e.player_index).force
-  check_all_for_force(force)
 end)
 
 -- script.on_event(defines.events.on_built_entity, function(e)
