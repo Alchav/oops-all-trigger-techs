@@ -14,7 +14,6 @@ local function localized_condition(cond)
 end
 
 local function join_with_commas_and_and(parts)
-  -- parts: array of LocalisedString
   if #parts == 0 then return {""} end
   if #parts == 1 then return parts[1] end
   local acc = {"", parts[1]}
@@ -77,7 +76,6 @@ local function icon_for_entity(name)
       return {{icon = e.icon, icon_size = e.icon_size or 64}}, e.icon_size or 64
     end
   end
-  -- Try to find the placeable item’s icon
   for _, item in pairs(data.raw.item or {}) do
     if item.place_result == name then
       return icon_for_item(item.name)
@@ -104,7 +102,6 @@ local function collect_icons(conditions)
     end
     if ic_tbl then
       icon_size = sz or icon_size
-      -- small overlay grid: scale down so multiple icons fit
       for _, ic in ipairs(ic_tbl) do
         local copy = table.deepcopy(ic)
         copy.scale = 0.5
@@ -206,7 +203,6 @@ data.raw.technology["physical-projectile-damage-6"].prerequisites = {"military-4
 data.raw.technology["physical-projectile-damage-6"].research_trigger = {type = "craft-item", item = "piercing-shotgun-shell", count = 250}
 
 data.raw.technology["advanced-material-processing"].prerequisites = {"steel-axe", "stone-wall"}
--- data.raw.technology["advanced-material-processing"].research_trigger = {type = "craft-item", item = "steel-plate", count = 250}
 data.raw.technology["automation-2"].prerequisites = {"steel-processing", "automation", "electronics"}
 data.raw.technology["automation-2"].research_trigger = {type = "craft-item", item = "assembling-machine-1", count = 200}
 data.raw.technology["circuit-network"].prerequisites = {"automation"}
@@ -218,11 +214,8 @@ data.raw.technology["electric-energy-distribution-1"].research_trigger = {type =
 data.raw.technology["landfill"].prerequisites = {"automation"}
 data.raw.technology["landfill"].research_trigger = {type = "craft-item", item = "stone", count = 250}
 data.raw.technology["logistics-2"].prerequisites = {"logistics"}
--- data.raw.technology["logistics-2"].research_trigger = {type = "craft-item", item = "transport-belt", count = 2000}
 data.raw.technology["toolbelt"].prerequisites = {"logistics", "landfill", "stone-wall", "steel-processing", "repair-pack", "fast-inserter", "lamp", "radar"}
--- data.raw.technology["toolbelt"].research_trigger = {type = "craft-item", item = "steel-chest", count = 1}
 data.raw.technology["bulk-inserter"].prerequisites = {"fast-inserter", "advanced-circuit"}
--- data.raw.technology["bulk-inserter"].research_trigger = {type = "craft-item", item = "fast-inserter", count = 500}
 data.raw.technology["military-2"].prerequisites = {"military", "steel-processing"}
 data.raw.technology["military-2"].research_trigger = {type = "craft-item", item = "gun-turret", count = 15}
 data.raw.technology["solar-energy"].prerequisites = {"steel-processing", "electronics", "steam-power"}
@@ -231,25 +224,19 @@ data.raw.technology["fluid-handling"].research_trigger = {type = "craft-item", i
 data.raw.technology["oil-gathering"].research_trigger = {type = "craft-item", item = "pipe-to-ground", count = 20}
 data.raw.technology["railway"].research_trigger = {type = "craft-item", item = "stone", count = 1500}
 data.raw.technology["automobilism"].research_trigger = {type = "craft-item", item = "engine-unit", count = 8}
--- data.raw.technology["fluid-wagon"].research_trigger = {type = "craft-item", item = "pump", count = 5}
--- data.raw.technology["automated-rail-transportation"].research_trigger = {type = "craft-item", item = "cargo-wagon", count = 2}
 data.raw.technology["flammables"].research_trigger = {type = "craft-fluid", fluid = "crude-oil", amount = 1000}
 data.raw.technology["flamethrower"].prerequisites = {"flammables"}
 data.raw.technology["flamethrower"].research_trigger = {type = "craft-fluid", fluid = "crude-oil", amount = 10000}
 data.raw.technology["plastics"].research_trigger = {type = "craft-fluid", fluid = "petroleum-gas", amount = 500}
 data.raw.technology["advanced-circuit"].research_trigger = {type = "craft-item", item = "plastic-bar", count = 500}
 data.raw.technology["modules"].research_trigger = {type = "craft-item", item = "advanced-circuit", count = 50}
--- data.raw.technology["modular-armor"].research_trigger = {type = "craft-item", item = "advanced-circuit", count = 50}
 data.raw.technology["solar-panel-equipment"].research_trigger = {type = "craft-item", item = "solar-panel", count = 5}
 data.raw.technology["sulfur-processing"].research_trigger = {type = "craft-item", item = "chemical-plant", count = 5}
 data.raw.technology["explosives"].research_trigger = {type = "craft-item", item = "sulfur", count = 100}
--- data.raw.technology["cliff-explosives"].research_trigger = {type = "craft-item", item = "explosives", count = 100}
 data.raw.technology["land-mine"].prerequisites = {"explosives"}
--- data.raw.technology["land-mine"].research_trigger = {type = "craft-item", item = "explosives", count = 1000}
 data.raw.technology["battery"].research_trigger = {type = "craft-fluid", fluid = "sulfuric-acid", amount = 25000}
 data.raw.technology["battery-equipment"].research_trigger = {type = "craft-item", item = "battery", count = 100}
 data.raw.technology["rocketry"].prerequisites = {"explosives", "flammables", "military-2"}
--- data.raw.technology["rocketry"].research_trigger = {type = "craft-item", item = "explosives", count = 400}
 data.raw.technology["inserter-capacity-bonus-2"].prerequisites = {"electronics"}
 data.raw.technology["inserter-capacity-bonus-2"].research_trigger = {type = "craft-item", item = "inserter", count = 500}
 data.raw.technology["inserter-capacity-bonus-7"].prerequisites = {"automation"}
@@ -276,16 +263,9 @@ data.raw.technology["stronger-explosives-5"].prerequisites = {"explosive-rocketr
 data.raw.technology["stronger-explosives-5"].research_trigger = {type = "craft-item", item = "explosive-rocket", count = 200}
 data.raw.technology["stronger-explosives-6"].prerequisites = {"atomic-bomb"}
 data.raw.technology["stronger-explosives-6"].research_trigger = {type = "craft-item", item = "atomic-bomb", count = 5}
--- data.raw.technology["stronger-explosives-7"].research_trigger = {type = "craft-item", item = "atomic-bomb", count = 1}
-
--- data.raw.technology["productivity-module"].research_trigger = {type = "craft-item", item = "iron-ore", count = 50000}
--- data.raw.technology["speed-module"].research_trigger = {type = "craft-item", item = "copper-ore", count = 10000}
--- data.raw.technology["efficiency-module"].research_trigger = {type = "craft-item", item = "coal", count = 15000}
--- data.raw.technology["quality-module"].research_trigger = {type = "craft-item", item = "stone", count = 10000}
 
 data.raw.technology["belt-immunity-equipment"].research_trigger = {type = "craft-item", item = "transport-belt", count = 2500}
 data.raw.technology["night-vision-equipment"].research_trigger = {type = "craft-item", item = "small-lamp", count = 150}
--- data.raw.technology["electric-energy-accumulators"].research_trigger = {type = "craft-item", item = "big-electric-pole", count = 100}
 data.raw.technology["mining-productivity-1"].research_trigger = {type = "craft-item", item = "electric-mining-drill", count = 250}
 data.raw.technology["mining-productivity-2"].prerequisites = {"mining-productivity-1", "sulfur-processing"}
 data.raw.technology["mining-productivity-2"].research_trigger = {type = "craft-item", item = "electric-mining-drill", count = 500}
@@ -316,16 +296,12 @@ data.raw.technology["refined-flammables-5"].research_trigger = {type = "craft-it
 data.raw.technology["refined-flammables-6"].prerequisites = {"flamethrower", "legendary-quality"}
 data.raw.technology["refined-flammables-6"].research_trigger = {type = "craft-item", item = {name = "flamethrower-ammo", quality = "legendary", comparator = "="}, count = 1}
 
--- data.raw.technology["exoskeleton-equipment"].research_trigger = {type = "craft-item", item = "electric-engine-unit", count = 400}
 
 data.raw.technology["advanced-combinators"].prerequisites = {"advanced-circuit", "circuit-network"}
--- data.raw.technology["advanced-combinators"].research_trigger = {type = "craft-item", item = "decider-combinator", count = 15}
 
 data.raw.technology["advanced-material-processing-2"].prerequisites = {"advanced-circuit", "advanced-material-processing"}
--- data.raw.technology["advanced-material-processing-2"].research_trigger = {type = "craft-item", item = "coal", count = 17500}
 
 data.raw.technology["advanced-oil-processing"].prerequisites = {"advanced-circuit", "sulfur-processing"}
--- data.raw.technology["advanced-oil-processing"].research_trigger = {type = "craft-item", item = "sulfur", count = 1000}
 
 data.raw.technology["coal-liquefaction"].prerequisites = {"lubricant", "advanced-material-processing-2", "productivity-module"}
 data.raw.technology["coal-liquefaction"].research_trigger = {type = "craft-fluid", fluid = "heavy-oil", amount = 50000}
@@ -333,12 +309,9 @@ data.raw.technology["coal-liquefaction"].research_trigger = {type = "craft-fluid
 data.raw.technology["lubricant"].prerequisites = {"advanced-oil-processing"}
 data.raw.technology["lubricant"].research_trigger = {type = "craft-fluid", fluid = "heavy-oil", amount = 25000}
 
--- data.raw.technology["rocket-fuel"].research_trigger = {type = "craft-item", item = "solid-fuel", count = 1000}
 
 data.raw.technology["laser"].prerequisites = {"advanced-circuit", "sulfur-processing", "battery"}
--- data.raw.technology["laser"].research_trigger = {type = "craft-item", item = "battery", count = 1000}
 data.raw.technology["processing-unit"].prerequisites = {"advanced-circuit", "sulfur-processing"}
--- data.raw.technology["processing-unit"].research_trigger = {type = "craft-item", item = "advanced-circuit", count = 2000}
 data.raw.technology["military-3"].prerequisites = {"advanced-circuit", "sulfur-processing", "military-2"}
 data.raw.technology["military-3"].research_trigger = {type = "craft-item", item = "piercing-rounds-magazine", count = 1000}
 data.raw.technology["uranium-mining"].prerequisites = {"concrete", "advanced-circuit", "sulfur-processing"}
@@ -357,7 +330,6 @@ data.raw.technology["braking-force-6"].prerequisites = {"automated-rail-transpor
 data.raw.technology["braking-force-6"].research_trigger = {type = "craft-item", item = "rail-chain-signal", count = 25}
 data.raw.technology["braking-force-7"].prerequisites = {"fluid-wagon"}
 data.raw.technology["braking-force-7"].research_trigger = {type = "craft-item", item = "fluid-wagon", count = 15}
--- data.raw.technology["tank"].research_trigger = {type = "craft-item", item = "car", count = 1}
 data.raw.technology["uranium-ammo"].research_trigger = {type = "craft-item", item = "uranium-238", count = 1000}
 data.raw.technology["kovarex-enrichment-process"].prerequisites = {"nuclear-power"}
 data.raw.technology["kovarex-enrichment-process"].research_trigger = {type = "craft-item", item = "uranium-fuel-cell", count = 15}
@@ -380,10 +352,8 @@ data.raw.technology["quality-module-3"].research_trigger = {type = "craft-item",
 
 
 data.raw.technology["electric-energy-distribution-2"].prerequisites = {"electric-energy-distribution-1", "advanced-circuit"}
--- data.raw.technology["electric-energy-distribution-2"].research_trigger = {type = "craft-item", item = "medium-electric-pole", count = 250}
 data.raw.technology["artillery"].research_trigger = {type = "craft-item", item = "radar", count = 100}
 
--- data.raw.technology["electric-engine"].research_trigger = {type = "craft-item", item = "engine-unit", count = 500}
 
 data.raw.technology["automation-3"].prerequisites = {"electric-engine", "advanced-material-processing-2", "productivity-module", "speed-module"}
 data.raw.technology["automation-3"].research_trigger = {type = "craft-item", item = "assembling-machine-2", count = 150}
@@ -393,10 +363,7 @@ data.raw.technology["energy-shield-equipment"].research_trigger = {type = "craft
 data.raw.technology["energy-shield-mk2-equipment"].prerequisites = {"energy-shield-equipment", "military-3", "power-armor", "low-density-structure", "quality-module"}
 data.raw.technology["energy-shield-mk2-equipment"].research_trigger = {type = "craft-item", item = {name = "energy-shield-equipment", quality = "uncommon", comparator = ">="}, count = 2}
 
--- data.raw.technology["robotics"].research_trigger = {type = "craft-item", item = "electric-engine-unit", count = 100}
 data.raw.technology["logistic-robotics"].prerequisites = {"logistics-2", "robotics"}
--- data.raw.technology["logistic-robotics"].research_trigger = {type = "craft-item", item = "flying-robot-frame", count = 250}
--- data.raw.technology["construction-robotics"].research_trigger = {type = "craft-item", item = "flying-robot-frame", count = 100}
 
 data.raw.technology["logistic-system"].prerequisites = {"logistic-robotics", "low-density-structure", "processing-unit"}
 data.raw.technology["logistic-system"].research_trigger = {type = "craft-item", item = "logistic-robot", count = 100}
@@ -419,15 +386,12 @@ data.raw.technology["worker-robots-speed-6"].prerequisites = {"robotics", "space
 data.raw.technology["worker-robots-speed-5"].research_trigger = {type = "craft-item", item = {name ="logistic-robot", quality = "legendary", comparator = ">="}, count = 15}
 
 data.raw.technology["low-density-structure"].prerequisites = {"plastics", "advanced-material-processing"}
--- data.raw.technology["low-density-structure"].research_trigger = {type = "craft-item", item = "copper-plate", count = 7500}
 
 data.raw.technology["personal-roboport-equipment"].prerequisites = {"construction-robotics", "logistic-robotics"}
--- data.raw.technology["personal-roboport-equipment"].research_trigger = {type = "craft-item", item = "construction-robot", count = 10}
 data.raw.technology["personal-roboport-mk2-equipment"].prerequisites = {"processing-unit", "personal-roboport-equipment", "solar-panel-equipment", "low-density-structure", "quality-module"}
 data.raw.technology["personal-roboport-mk2-equipment"].research_trigger = {type = "craft-item", item = {name = "personal-roboport-equipment", quality = "uncommon", comparator = ">="}, count = 1}
 data.raw.technology["spidertron"].research_trigger = {type = "craft-item", item = "efficiency-module-3", count = 5}
 data.raw.technology["rocket-silo"].prerequisites = {"automation-3", "logistics-3", "concrete", "rocket-fuel", "electric-energy-accumulators", "solar-energy", "processing-unit", "low-density-structure", "speed-module-3", "productivity-module-3", "radar"}
--- data.raw.technology["rocket-silo"].research_trigger = {type = "craft-item", item = "concrete", count = 1}
 
 data.raw.technology["epic-quality"].prerequisites = {"quality-module-2"}
 data.raw.technology["epic-quality"].research_trigger = {type = "craft-item", item = {name = "quality-module-2", quality = "rare", comparator = "="}, count = 1}
@@ -438,24 +402,19 @@ data.raw.technology["battery-mk2-equipment"].prerequisites = {"power-armor","bat
 data.raw.technology["battery-mk2-equipment"].research_trigger = {type = "craft-item", item = {name = "battery-equipment", quality = "uncommon", comparator = ">="}, count = 1}
 
 data.raw.technology["power-armor-mk2"].prerequisites = {"speed-module-2", "efficiency-module-2", "low-density-structure", "power-armor", "military-4"}
--- data.raw.technology["power-armor-mk2"].research_trigger = {type = "craft-item", item = {name = "power-armor", quality = "uncommon", comparator = ">="}, count = 1}
 
 data.raw.technology["power-armor"].research_trigger = {type = "craft-item", item = "processing-unit", count = 250}
 
 data.raw.technology["laser-turret"].prerequisites = {"laser", "military-2"}
--- data.raw.technology["laser-turret"].research_trigger = {type = "craft-item", item = "gun-turret", count = 250}
 
 data.raw.technology["personal-laser-defense-equipment"].prerequisites = {"low-density-structure", "military-3", "solar-panel-equipment", "laser-turret", "power-armor"}
 data.raw.technology["personal-laser-defense-equipment"].research_trigger = {type = "craft-item", item = "laser-turret", count = 50}
 
 data.raw.technology["effect-transmission"].prerequisites = {"speed-module", "productivity-module", "efficiency-module", "quality-module", "processing-unit", "advanced-material-processing-2"}
--- data.raw.technology["effect-transmission"].research_trigger = {type = "craft-item", item = {name = "speed-module", quality = "uncommon", comparator = ">="}, count = 10}
 
 data.raw.technology["elevated-rail"].prerequisites = {"railway", "concrete"}
--- data.raw.technology["elevated-rail"].research_trigger = {type = "craft-item", item = "refined-concrete", count = 500}
 
 data.raw.technology["logistics-3"].prerequisites = {"lubricant", "logistics-2"}
--- data.raw.technology["logistics-3"].research_trigger = {type = "craft-item", item = "fast-transport-belt", count = 5000}
 
 data.raw.technology["recycling"].prerequisites = {"processing-unit", "concrete", "quality-module"}
 data.raw.technology["recycling"].research_trigger = {type = "craft-item", item = "quality-module", count = 5}
@@ -546,20 +505,4 @@ for _, tech in pairs(data.raw.technology) do
     if not (string.find(tech.name, "research-speed", 1, true) or string.find(tech.name, "mining-productivity", 1, true)) then
         tech.upgrade = false
     end
--- --     if tech.prerequisites then
--- -- --     for i = #tech.prerequisites, 1, -1 do
--- -- --       if tech.prerequisites[i] == "space-science-pack" then
--- -- --         tech.prerequisites[i] = "rocket-silo"
--- -- --       elseif tech.prerequisites[i] == "automation-science-pack" then
--- -- --           tech.prerequisites[i] = "electronics"
--- -- --           table.insert(tech.prerequisites, "steam-power"
--- -- --       elseif tech.prerequisites[i] == "logistic-science-pack"
--- -- --           tech.prerequisites[i] = "electronics"
--- -- --           table.insert(tech.prerequisites, "steam-power"
--- -- --       elseif tech.prerequisites[i] == "promethium-science-pack" then
--- -- --         tech.prerequisites[i] = "space-science-pack"
--- --       end
--- --     if tech.prerequisites then
--- --         for i = #tech.prerequisites, 1, -1 do
--- --             if tech.prerequisites[i]
   end

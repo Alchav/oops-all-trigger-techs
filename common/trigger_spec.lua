@@ -1,6 +1,4 @@
--- Return a map: technology_name -> { conditions = { ... } }
--- Supported condition types below: "craft-item", "build-entity".
--- Add more if you like (mine-entity, kill-entity, etc).
+
 return {
   ["toolbelt"] = {
 
