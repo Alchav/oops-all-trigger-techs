@@ -185,7 +185,7 @@ return {
       { type = "craft-item", item = "speed-module-2", count = 100 }
 
   },
-  ["electric-engine-unit"] = {
+  ["electric-engine"] = {
 
       { type = "craft-item", item = "engine-unit", count = 250 },
       { type = "craft-fluid", item = "lubricant", amount = 500 },

@@ -117,6 +117,9 @@ end
 
 for tech_name, def in pairs(Spec) do
     local tech = data.raw.technology[tech_name]
+    if tech == nil then
+        error("Invalid tech name: " .. tech_name)
+    end
     local icons, icon_size = collect_icons(def)
     tech.research_trigger = {
       type = "scripted",
@@ -501,6 +504,7 @@ data.raw.technology["laser-weapons-damage-6"].research_trigger = {type = "craft-
 for _, tech in pairs(data.raw.technology) do
     if tech.research_trigger then
         tech.unit = nil
+    end
     if not (string.find(tech.name, "research-speed", 1, true) or string.find(tech.name, "mining-productivity", 1, true)) then
         tech.upgrade = false
     end
