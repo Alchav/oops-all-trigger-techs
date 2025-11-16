@@ -127,7 +127,7 @@ return {
   ["rocket-fuel"] = {
 
       { type = "craft-item", item = "solid-fuel", count = 500 },
-      { type = "craft-fluid", item = "light-oil", count = 25000 }
+      { type = "craft-fluid", fluid = "light-oil", count = 25000 }
 
   },
   ["effect-transmission"] = {
@@ -188,7 +188,7 @@ return {
   ["electric-engine"] = {
 
       { type = "craft-item", item = "engine-unit", count = 250 },
-      { type = "craft-fluid", item = "lubricant", amount = 500 },
+      { type = "craft-fluid", fluid = "lubricant", count = 500 },
 
   },
   ["elevated-rail"] = {
