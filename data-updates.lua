@@ -48,6 +48,9 @@ end
 local function icon_for_item(name)
   local proto = (data.raw.item and data.raw.item[name])
             or (data.raw.tool and data.raw.tool[name])
+            or (data.raw.fluid and data.raw.fluid[name])
+            or (data.raw["item-with-entity-data"] and data.raw["item-with-entity-data"][name])
+            or (data.raw.locomotive and data.raw.locomotive[name])
             or (data.raw.armor and data.raw.armor[name])
             or (data.raw.module and data.raw.module[name])
             or (data.raw.rail_planner and data.raw.rail_planner[name])
@@ -98,7 +101,7 @@ local function collect_icons(conditions)
     if c.type == "craft-item" then
       ic_tbl, sz = icon_for_item(c.item)
     elseif c.type == "craft-fluid" then
-      ic_tbl, sz = icon_for_entity(c.fluid)
+      ic_tbl, sz = icon_for_item(c.fluid)
     end
     if ic_tbl then
       icon_size = sz or icon_size
@@ -240,6 +243,7 @@ data.raw.technology["land-mine"].prerequisites = {"explosives"}
 data.raw.technology["battery"].research_trigger = {type = "craft-fluid", fluid = "sulfuric-acid", amount = 25000}
 data.raw.technology["battery-equipment"].research_trigger = {type = "craft-item", item = "battery", count = 100}
 data.raw.technology["rocketry"].prerequisites = {"explosives", "flammables", "military-2"}
+data.raw.technology["rocketry"].research_trigger = {type = "craft-item", item = "explosives", count = 250}
 data.raw.technology["inserter-capacity-bonus-2"].prerequisites = {"electronics"}
 data.raw.technology["inserter-capacity-bonus-2"].research_trigger = {type = "craft-item", item = "inserter", count = 500}
 data.raw.technology["inserter-capacity-bonus-7"].prerequisites = {"automation"}

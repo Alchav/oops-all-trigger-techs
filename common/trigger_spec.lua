@@ -109,7 +109,7 @@ return {
   ["processing-unit"] = {
 
       { type = "craft-item", item = "advanced-circuit", count = 1000 },
-      { type = "craft-fluid", fluid = "sulfuric-acid", count = 15000 }
+      { type = "craft-fluid", fluid = "sulfuric-acid", amount = 15000 }
 
   },
   ["laser"] = {
@@ -127,7 +127,7 @@ return {
   ["rocket-fuel"] = {
 
       { type = "craft-item", item = "solid-fuel", count = 500 },
-      { type = "craft-fluid", item = "light-oil", count = 25000 }
+      { type = "craft-fluid", fluid = "light-oil", amount = 25000 }
 
   },
   ["effect-transmission"] = {
@@ -188,7 +188,7 @@ return {
   ["electric-engine"] = {
 
       { type = "craft-item", item = "engine-unit", count = 250 },
-      { type = "craft-fluid", item = "lubricant", amount = 500 },
+      { type = "craft-fluid", fluid = "lubricant", amount = 500 },
 
   },
   ["elevated-rail"] = {
